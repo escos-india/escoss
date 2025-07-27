@@ -126,11 +126,11 @@
       if (lineIndex < lines.length) {
         const line = lines[lineIndex];
         if (charIndex < line.length) {
-          target.textContent += line.charAt(charIndex);
+          target.innerHTML += line.charAt(charIndex);
           charIndex++;
           setTimeout(typeLine, speed);
         } else {
-          target.innerHTML += '<br>';
+          target.innerHTML += "<br>";
           lineIndex++;
           charIndex = 0;
           setTimeout(typeLine, speed);
