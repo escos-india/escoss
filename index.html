@@ -1,153 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ESCOS Pvt. Ltd.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #000;
-      color: #00ff00;
-      font-family: 'Fira Code', monospace;
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #0f0f0f;
+      color: #00ff99;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      height: 100vh;
       flex-direction: column;
       overflow: hidden;
     }
-
-    .terminal {
-      background-color: #111;
-      border-radius: 8px;
-      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-      width: 90%;
-      max-width: 800px;
-      padding: 40px 30px;
-      position: relative;
-    }
-
-    .terminal-header {
-      position: absolute;
-      top: 10px;
-      left: 15px;
-      display: flex;
-      gap: 8px;
-    }
-
-    .terminal-header span {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .red { background-color: #ff5f56; }
-    .yellow { background-color: #ffbd2e; }
-    .green { background-color: #27c93f; }
-
-    #typewriter {
-      white-space: pre-wrap;
-      overflow: hidden;
-      border-right: 2px solid #00ff00;
-      font-size: 1rem;
+    #terminal {
+      text-align: left;
+      max-width: 80ch;
+      white-space: pre-line;
       line-height: 1.5;
-      animation: blinkCursor 0.8s step-end infinite;
-      min-height: 100px;
     }
-
-    @keyframes blinkCursor {
-      50% { border-color: transparent; }
+    #footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.8rem;
+      color: #999;
     }
-
+    .hidden {
+      display: none;
+    }
     .quote {
-      color: #33ff33;
-      font-size: 0.9rem;
-      margin-top: 20px;
+      color: #999;
+      margin-top: 1rem;
       font-style: italic;
-      opacity: 0.8;
     }
-
-    .press-enter {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      animation: blink 1s infinite;
+    .blink {
+      animation: blink 1s steps(2, start) infinite;
     }
-
-    .highlight {
-      color: #00ff00;
-      font-weight: bold;
-    }
-
     @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .footer {
-      margin-top: 40px;
-      font-size: 0.75rem;
-      opacity: 0.4;
+      to {
+        visibility: hidden;
+      }
     }
   </style>
 </head>
 <body>
-
-  <div class="terminal" id="terminal">
-    <div class="terminal-header">
-      <span class="red"></span>
-      <span class="yellow"></span>
-      <span class="green"></span>
-    </div>
-    <div id="typewriter"></div>
-    <div class="quote" id="quote"></div>
-    <div class="press-enter" id="enterPrompt" style="display: none;">
-      [Press <span class="highlight">Enter</span> to continue]
-    </div>
+  <div id="terminal">
+    [+] Initializing systems...<br>
+    [+] Bypassing firewalls...<br>
+    [+] Access Granted ✓<br><br>
+    [+] Welcome to ESCOS Pvt. Ltd.<br>
+    [+] Securing the digital future, one byte at a time.<br>
+    <div class="quote">"We Hack You Before They Can." — Saumitra Kulkarni</div>
+    <br>
+    [Press <span class="blink">Enter</span> to continue]
   </div>
 
-  <div class="footer">ESCOS Pvt. Ltd. © 2025 | Securing the digital frontier</div>
+  <div id="footer">ESCOS Pvt. Ltd. © 2025 | Securing the digital frontier</div>
 
   <script>
-    const lines = [
-      "[+] Welcome to ESCOS Pvt. Ltd.",
-      "[+] Securing the digital future, one byte at a time."
-    ];
-    const quote = `"We Hack You Before They Can."\n    — Saumitra Kulkarni`;
-
-    let lineIndex = 0;
-    let charIndex = 0;
-    const speed = 40;
-    const target = document.getElementById("typewriter");
-
-    function typeLine() {
-      if (lineIndex < lines.length) {
-        const line = lines[lineIndex];
-        if (charIndex < line.length) {
-          target.textContent += line.charAt(charIndex);
-          charIndex++;
-          setTimeout(typeLine, speed);
-        } else {
-          target.textContent += '\\n';
-          lineIndex++;
-          charIndex = 0;
-          setTimeout(typeLine, speed);
-        }
-      } else {
-        document.getElementById("quote").textContent = quote;
-        document.getElementById("enterPrompt").style.display = "block";
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Enter") {
-            window.location.href = "home.html";
-          }
-        });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        window.location.href = 'home.html';
       }
-    }
-
-    window.onload = typeLine;
+    });
   </script>
 </body>
 </html>
-  
